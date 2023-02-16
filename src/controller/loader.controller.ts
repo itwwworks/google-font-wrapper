@@ -16,6 +16,8 @@ export class LoaderController {
       httpProtocol = 'http';
     }
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const css = cssResponse.data.replaceAll('https://fonts.gstatic.com', `${httpProtocol}://${host}/font/font-file`);
 
     return {
