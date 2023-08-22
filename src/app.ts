@@ -1,6 +1,8 @@
 import cors from '@fastify/cors';
 import dotenv from 'dotenv';
 import fastify from 'fastify';
+import fs from 'fs';
+import path from 'path';
 import { RouteService } from './service';
 
 dotenv.config();
@@ -19,9 +21,7 @@ app.register(cors, {
 RouteService.registerRoutes(app);
 
 app.get('/', (req, res) => {
-  res.type('text/html').send(`
-            <h1><a href="https://itwwworks.de/">itwwworks</a></h1>
-        `);
+  res.type('text/html').send(fs.readFileSync(`${path.resolve(__dirname)}/pages/index.html`, 'utf8'));
 });
 
 export { app, port };

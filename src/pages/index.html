@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GoogleFontWrapper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<body>
+<div class="row">
+    <div class="col"></div>
+    <div class="col-md-7">
+        <h1 style="text-align: center;">Google Font Wrapper by pdaus.de</h1>
+    </div>
+    <div class="col"></div>
+</div>
+
+<section class="newsletter-subscribe py-4 py-xl-5">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h2 class="display-6 fw-bold">Generiere deine Font URL</h2>
+                <p class="text-muted">Nutze weiterhin Google Fonts für deine Projekte!<br />Dafür einfach die Google URL gegen unsere Wrapper URL tauschen.<br />Du schickst nur Anfragen an einen deutschen Server, welcher sich um die Kommunikation mit den Google Servern kümmert.</p>
+            </div>
+        </div>
+        <form class="d-flex justify-content-center flex-wrap" id="googleFontForm">
+            <div class="mb-3"><input class="form-control" type="text" id="googleFontFormInput" name="googlefonturl" placeholder="Google Font Url" /></div>
+            <div class="mb-3"><button class="btn btn-primary ms-2" id="googleFontFormButton" type="submit">Generate Font URL</button></div>
+        </form>
+    </div>
+</section>
+
+<section class="newsletter-subscribe py-4 py-xl-5">
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-md-8 col-xl-6 text-center mx-auto">
+                <h5 class="display-6 fs-3 fw-bold">Deine Font URL</h5>
+            </div>
+        </div>
+        <form class="d-flex justify-content-center flex-wrap" id="copyfontForm">
+            <div class="mb-3"><input class="form-control" type="text" id="copyfontFormInput" disabled name="fonturl" placeholder="Deine URL" /></div>
+            <div class="mb-3"><button class="btn btn-primary ms-2" id="copyfontFormButton" type="submit">Kopieren</button></div>
+        </form>
+    </div>
+</section>
+
+<script>
+    const form = document.querySelector('#googleFontForm');
+    const input = document.querySelector('#googleFontFormInput');
+    const button = document.querySelector('#googleFontFormButton');
+
+    const copyform = document.querySelector('#copyfontForm');
+    const copyinput = document.querySelector('#copyfontFormInput');
+    const copybutton = document.querySelector('#copyfontFormButton');
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const url = input.value;
+        copyinput.value = url.replace('fonts.googleapis.com/css2', 'fonts.pdaus.de/font');;
+    });
+
+    copyform.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const url = copyinput.value;
+        navigator.clipboard.writeText(url);
+        copybutton.innerHTML = 'Copied!';
+        setTimeout(() => {
+            copybutton.innerHTML = 'Kopieren';
+        }, 2000);
+    });
+</script>
+</body>
+</html>
+
