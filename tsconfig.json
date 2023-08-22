@@ -19,7 +19,7 @@
   "include": [
     "src",
     "package.json",
-    "yarn.lock"
+    "yarn.lock",
   ],
   "exclude": [
     "node_modules"
